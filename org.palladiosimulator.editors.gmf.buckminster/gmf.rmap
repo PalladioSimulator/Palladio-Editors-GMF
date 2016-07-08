@@ -3,7 +3,7 @@
 
   <rm:property key="resolveFrom" value="release"/>
 
-  <rm:locator pattern="^de\.uka\.ipd\.sdq\.pcm\.gmf.*" searchPathRef="editors" failOnError="true"/>
+  <rm:locator pattern="^de\.uka\.ipd\.sdq\.pcm\.gmf.*" searchPathRef="GMFEditors" failOnError="true"/>
   <rm:locator pattern="^org\.palladiosimulator\.editors\.gmf.*" searchPathRef="GMFEditors" failOnError="true"/>
   <rm:locator pattern="^org\.palladiosimulator\.pcm.*" searchPathRef="GMFEditors" failOnError="false"/>
 
