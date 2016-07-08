@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.palladiosimulator.editors.commons.buckminster"
-      label="Palladio Component Model - Editors - Buckminster Feature"
+      label="Palladio Component Model - GMF Editors - Buckminster Feature"
       version="1.0.0"
       plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
