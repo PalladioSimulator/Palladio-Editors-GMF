@@ -239,34 +239,6 @@ This feature brings GMF-based editors to Palladio.
          unpack="false"/>
 
    <plugin
-         id="org.palladiosimulator.editors.commons.dialogs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.palladiosimulator.editors.commons.propertytabs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.palladiosimulator.editors.commons.tabs"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.palladiosimulator.pcm.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.palladiosimulator.branding"
          download-size="0"
          install-size="0"
