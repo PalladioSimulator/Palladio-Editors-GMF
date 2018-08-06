@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.palladiosimulator.editorsgmf</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>bundles</artifactId>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>de.uka.ipd.sdq.pcm.gmf.allocation</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.allocation.custom</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.allocation.helper</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.composite</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.composite.custom</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.composite.helper</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.repository</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.repository.custom</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.repository.helper</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.resource</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.resource.custom</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.resource.helper</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.seff</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.seff.custom</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.seff.helper</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.toolbar</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.usage</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.usage.custom</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.usage.helper</module>
+	</modules>
+	
+</project>
