@@ -53,4 +53,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.editors.commons.tabs;bundle-version="2.0.1",
  org.palladiosimulator.pcm.ui;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11

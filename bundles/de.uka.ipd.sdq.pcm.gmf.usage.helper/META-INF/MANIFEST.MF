@@ -21,4 +21,4 @@ Require-Bundle: org.eclipse.ui,
  org.palladiosimulator.editors.commons.dialogs
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: sdq.ipd.uka.de
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
