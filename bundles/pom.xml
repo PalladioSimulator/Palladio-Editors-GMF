@@ -28,6 +28,7 @@
 		<module>de.uka.ipd.sdq.pcm.gmf.seff.custom</module>
 		<module>de.uka.ipd.sdq.pcm.gmf.seff.helper</module>
 		<module>de.uka.ipd.sdq.pcm.gmf.toolbar</module>
+		<module>de.uka.ipd.sdq.pcm.gmf.ui</module>
 		<module>de.uka.ipd.sdq.pcm.gmf.usage</module>
 		<module>de.uka.ipd.sdq.pcm.gmf.usage.custom</module>
 		<module>de.uka.ipd.sdq.pcm.gmf.usage.helper</module>
