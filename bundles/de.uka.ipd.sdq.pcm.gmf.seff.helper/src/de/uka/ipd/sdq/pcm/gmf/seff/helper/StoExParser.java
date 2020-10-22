@@ -1,8 +1,5 @@
 package de.uka.ipd.sdq.pcm.gmf.seff.helper;
 
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -13,12 +10,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.palladiosimulator.commons.stoex.api.StoExSerialiser;
 import org.palladiosimulator.editors.commons.dialogs.stoex.StoExCompletionProcessor;
 import org.palladiosimulator.pcm.repository.Parameter;
-import org.palladiosimulator.pcm.stochasticexpressions.parser.PCMStoExLexer;
-import org.palladiosimulator.pcm.stochasticexpressions.parser.PCMStoExParser;
 
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
 import de.uka.ipd.sdq.stoex.Expression;
 import de.uka.ipd.sdq.stoex.RandomVariable;
 import de.uka.ipd.sdq.stoex.StoexPackage;
@@ -28,6 +23,9 @@ import de.uka.ipd.sdq.stoex.StoexPackage;
  */
 public class StoExParser implements IParser {
 
+    protected static final org.palladiosimulator.commons.stoex.api.StoExParser STOEX_PARSER = org.palladiosimulator.commons.stoex.api.StoExParser.createInstance();
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /*
      * (non-Javadoc)
      * 
@@ -121,14 +119,11 @@ public class StoExParser implements IParser {
     @Override
     public String getPrintString(final IAdaptable element, final int flags) {
         final RandomVariable randomVariable = (RandomVariable) element.getAdapter(RandomVariable.class);
-        final PCMStoExLexer lexer = new PCMStoExLexer(new ANTLRStringStream(randomVariable.getSpecification()));
         Expression expr;
         try {
-            expr = new PCMStoExParser(new CommonTokenStream(lexer)).expression();
-            final String result = new PCMStoExPrettyPrintVisitor().prettyPrint(expr);
+            expr = STOEX_PARSER.parse(randomVariable.getSpecification());
+            final String result = STOEX_SERIALISER.serialise(expr);
             return result;
-        } catch (final RecognitionException e) {
-            return "<invalid StoEx>";
         } catch (final Exception e) {
             return "<invalid StoEx>";
         }
@@ -178,9 +173,8 @@ public class StoExParser implements IParser {
      */
     @Override
     public IParserEditStatus isValidEditString(final IAdaptable element, final String editString) {
-        final PCMStoExLexer lexer = new PCMStoExLexer(new ANTLRStringStream(editString));
         try {
-            new PCMStoExParser(new CommonTokenStream(lexer)).expression();
+            STOEX_PARSER.parse(editString);
             return new ParserEditStatus("de.uka.ipd.sdq.pcm.gmf.seff.helper", IParserEditStatus.EDITABLE, "");
         } catch (final Exception e) {
             return new ParserEditStatus(IStatus.ERROR, "de.uka.ipd.sdq.pcm.gmf.seff.helper",
