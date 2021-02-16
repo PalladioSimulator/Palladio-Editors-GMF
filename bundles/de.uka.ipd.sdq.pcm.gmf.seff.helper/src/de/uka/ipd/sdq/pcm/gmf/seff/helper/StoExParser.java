@@ -10,9 +10,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.palladiosimulator.commons.stoex.api.StoExSerialiser;
 import org.palladiosimulator.editors.commons.dialogs.stoex.StoExCompletionProcessor;
 import org.palladiosimulator.pcm.repository.Parameter;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
 
 import de.uka.ipd.sdq.stoex.Expression;
 import de.uka.ipd.sdq.stoex.RandomVariable;
@@ -23,7 +23,7 @@ import de.uka.ipd.sdq.stoex.StoexPackage;
  */
 public class StoExParser implements IParser {
 
-    protected static final org.palladiosimulator.commons.stoex.api.StoExParser STOEX_PARSER = org.palladiosimulator.commons.stoex.api.StoExParser.createInstance();
+    protected static final org.palladiosimulator.pcm.stoex.api.StoExParser STOEX_PARSER = org.palladiosimulator.pcm.stoex.api.StoExParser.createInstance();
     protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
     
     /*
