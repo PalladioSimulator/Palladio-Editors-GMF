@@ -4,6 +4,7 @@
 package de.uka.ipd.sdq.pcm.gmf.seff.helper;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -21,6 +22,7 @@ import org.palladiosimulator.pcm.repository.InfrastructureRequiredRole;
 import org.palladiosimulator.pcm.repository.InfrastructureSignature;
 import org.palladiosimulator.pcm.repository.RepositoryPackage;
 
+import de.uka.ipd.sdq.stoex.RandomVariable;
 import de.uka.ipd.sdq.stoex.analyser.visitors.TypeEnum;
 
 /**
@@ -81,7 +83,10 @@ public class InfrastructureCallEditHelperAdvice extends AbstractEditHelperAdvice
 
         // create the number of calls dialog
         final StochasticExpressionEditDialog dialogNoC = new StochasticExpressionEditDialog(PlatformUI.getWorkbench()
-                .getActiveWorkbenchWindow().getShell(), TypeEnum.INT, request.getElementToConfigure());
+                .getActiveWorkbenchWindow().getShell(), TypeEnum.INT, Optional.ofNullable(request.getElementToConfigure())
+                .filter(RandomVariable.class::isInstance)
+                .map(RandomVariable.class::cast)
+                .orElse(null));
         dialogNoC.open();
         if (dialogNoC.getReturnCode() == Window.CANCEL) {
             return new CanceledCommand();

@@ -1,5 +1,7 @@
 package de.uka.ipd.sdq.pcm.gmf.seff.helper;
 
+import java.util.Optional;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -16,6 +18,7 @@ import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.parameter.ParameterPackage;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
 
+import de.uka.ipd.sdq.stoex.RandomVariable;
 import de.uka.ipd.sdq.stoex.StoexPackage;
 import de.uka.ipd.sdq.stoex.analyser.visitors.TypeEnum;
 
@@ -86,7 +89,12 @@ public class VariableCharacterisationConfigureCommand extends ConfigureElementCo
             final IAdaptable info) throws ExecutionException {
 
         final StochasticExpressionEditDialog dialog = new StochasticExpressionEditDialog(PlatformUI.getWorkbench()
-                .getActiveWorkbenchWindow().getShell(), TypeEnum.DOUBLE, this.request.getElementToConfigure());
+            .getActiveWorkbenchWindow()
+            .getShell(), TypeEnum.DOUBLE,
+                Optional.ofNullable(this.request.getElementToConfigure())
+                    .filter(RandomVariable.class::isInstance)
+                    .map(RandomVariable.class::cast)
+                    .orElse(null));
         dialog.open();
 
         if (dialog.getReturnCode() == Window.CANCEL) {

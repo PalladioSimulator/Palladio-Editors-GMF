@@ -1,6 +1,7 @@
 package de.uka.ipd.sdq.pcm.gmf.seff.helper;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -21,6 +22,8 @@ import org.palladiosimulator.pcm.resourcetype.ProcessingResourceType;
 import org.palladiosimulator.pcm.resourcetype.ResourceRepository;
 import org.palladiosimulator.pcm.seff.seff_performance.ParametricResourceDemand;
 import org.palladiosimulator.pcm.seff.seff_performance.SeffPerformancePackage;
+
+import de.uka.ipd.sdq.stoex.RandomVariable;
 import de.uka.ipd.sdq.stoex.StoexPackage;
 import de.uka.ipd.sdq.stoex.analyser.visitors.TypeEnum;
 
@@ -137,7 +140,10 @@ public class ParametricResourceDemandConfigureCommand extends ConfigureElementCo
             final IAdaptable info) throws ExecutionException {
 
         final StochasticExpressionEditDialog dialog = new StochasticExpressionEditDialog(PlatformUI.getWorkbench()
-                .getActiveWorkbenchWindow().getShell(), TypeEnum.DOUBLE, this.request.getElementToConfigure());
+                .getActiveWorkbenchWindow().getShell(), TypeEnum.DOUBLE, Optional.ofNullable(this.request.getElementToConfigure())
+                .filter(RandomVariable.class::isInstance)
+                .map(RandomVariable.class::cast)
+                .orElse(null));
         dialog.open();
 
         if (dialog.getReturnCode() == Window.CANCEL) {
