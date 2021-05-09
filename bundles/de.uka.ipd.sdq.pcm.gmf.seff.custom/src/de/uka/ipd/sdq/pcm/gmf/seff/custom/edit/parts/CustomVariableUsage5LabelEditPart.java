@@ -6,16 +6,20 @@ package de.uka.ipd.sdq.pcm.gmf.seff.custom.edit.parts;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-
-import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.VariableUsage5LabelEditPart;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
+
+import de.uka.ipd.sdq.pcm.gmf.seff.custom.Activator;
+import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.VariableUsage5LabelEditPart;
 
 /**
  * The customized variable usage5 label edit part class.
  */
 public class CustomVariableUsage5LabelEditPart extends VariableUsage5LabelEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * Instantiates a new customized variable usage5 label edit part.
      * 
@@ -40,7 +44,12 @@ public class CustomVariableUsage5LabelEditPart extends VariableUsage5LabelEditPa
                 // customized
                 final VariableUsage usage = (VariableUsage) this.resolveSemanticElement();
                 if (usage.getNamedReference__VariableUsage() != null) {
-                    text = new PCMStoExPrettyPrintVisitor().prettyPrint(usage.getNamedReference__VariableUsage());
+                    try {
+                        text = STOEX_SERIALISER.serialise(usage.getNamedReference__VariableUsage());
+                    } catch (SerialisationErrorException e) {
+                        Activator.getDefault().getLog().error("Could not serialise reference.", e);
+                        text = null;
+                    }
                 }
             } else {
                 if (parserElement != null && this.getParser() != null) {

@@ -10,16 +10,20 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
-
-import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.VariableUsage2EditPart;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
+
+import de.uka.ipd.sdq.pcm.gmf.seff.custom.Activator;
+import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.VariableUsage2EditPart;
 
 /**
  * The customized variable usage2 edit part class.
  */
 public class CustomVariableUsage2EditPart extends VariableUsage2EditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /** The Constant THIS_BACK. */
     static final Color THIS_BACK = new Color(null, 220, 220, 220);
 
@@ -74,11 +78,14 @@ public class CustomVariableUsage2EditPart extends VariableUsage2EditPart {
             final WrappingLabel fFigureVariableUsageReferenceLabelFigure = this
                     .getFigureVariableUsageReferenceLabelFigure();
             VariableUsage variableUsage = (VariableUsage) resolveSemanticElement();
-            if (variableUsage == null) {
-                fFigureVariableUsageReferenceLabelFigure.setText("<not set>");
-            } else {
-                fFigureVariableUsageReferenceLabelFigure.setText(new PCMStoExPrettyPrintVisitor()
-                        .prettyPrint(variableUsage.getNamedReference__VariableUsage()));
+            fFigureVariableUsageReferenceLabelFigure.setText("<not set>");
+            if (variableUsage != null) {
+                try {
+                    fFigureVariableUsageReferenceLabelFigure
+                        .setText(STOEX_SERIALISER.serialise(variableUsage.getNamedReference__VariableUsage()));
+                } catch (SerialisationErrorException e) {
+                    Activator.getDefault().getLog().error("Could not serialise reference.", e);
+                }
             }
             fFigureVariableUsageReferenceLabelFigure.setBorder(new MarginBorder(CustomVariableUsage2EditPart.this
                     .getMapMode().DPtoLP(2), CustomVariableUsage2EditPart.this.getMapMode().DPtoLP(0),

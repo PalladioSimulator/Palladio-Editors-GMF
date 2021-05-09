@@ -52,22 +52,25 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.palladiosimulator.editors.commons.dialogs.repository.OpenCapacityDialog;
+import org.palladiosimulator.pcm.repository.PassiveResource;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.PalladioComponentModelTextNonResizableEditPolicy;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.PassiveResourceItemSemanticEditPolicy;
+import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelRepositoryDiagramEditorPlugin;
 import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelVisualIDRegistry;
 import de.uka.ipd.sdq.pcm.gmf.repository.providers.PalladioComponentModelElementTypes;
 import de.uka.ipd.sdq.pcm.gmf.repository.providers.PalladioComponentModelParserProvider;
-
-import org.palladiosimulator.editors.commons.dialogs.repository.OpenCapacityDialog;
-import org.palladiosimulator.pcm.repository.PassiveResource;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
 
 /**
  * @generated
  */
 public class PassiveResourceEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * @generated
      */
@@ -235,7 +238,12 @@ public class PassiveResourceEditPart extends CompartmentEditPart implements ITex
         if (resolveSemanticElement() instanceof PassiveResource) {
             PassiveResource pr = (PassiveResource) resolveSemanticElement();
             if (pr.getCapacity_PassiveResource() != null) {
-                stoex = new PCMStoExPrettyPrintVisitor().prettyPrint(pr.getCapacity_PassiveResource().getExpression());
+                try {
+                    stoex = STOEX_SERIALISER.serialise(pr.getCapacity_PassiveResource().getExpression());
+                } catch (SerialisationErrorException e) {
+                    PalladioComponentModelRepositoryDiagramEditorPlugin.getInstance()
+                    .logError("Could not serialise expression.", e);
+                }
             }
             text = pr.getEntityName();
             if (stoex == null) {

@@ -7,16 +7,20 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-
-import de.uka.ipd.sdq.pcm.gmf.repository.edit.parts.PassiveResourceEditPart;
 import org.palladiosimulator.pcm.repository.PassiveResource;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
+
+import de.uka.ipd.sdq.pcm.gmf.repository.custom.Activator;
+import de.uka.ipd.sdq.pcm.gmf.repository.edit.parts.PassiveResourceEditPart;
 
 /**
  * A custom passive resource EditPart.
  */
 public class CustomPassiveResourceEditPart extends PassiveResourceEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * The changeListener.
      */
@@ -43,7 +47,11 @@ public class CustomPassiveResourceEditPart extends PassiveResourceEditPart {
         if (resolveSemanticElement() instanceof PassiveResource) {
             PassiveResource pr = (PassiveResource) resolveSemanticElement();
             if (pr.getCapacity_PassiveResource() != null) {
-                stoex = new PCMStoExPrettyPrintVisitor().prettyPrint(pr.getCapacity_PassiveResource().getExpression());
+                try {
+                    stoex = STOEX_SERIALISER.serialise(pr.getCapacity_PassiveResource().getExpression());
+                } catch (SerialisationErrorException e) {
+                    Activator.getDefault().getLog().error("Could not serialise expression.", e);
+                }
             }
             text = pr.getEntityName();
             if (stoex == null) {
