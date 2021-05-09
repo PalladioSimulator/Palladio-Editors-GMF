@@ -48,16 +48,17 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.palladiosimulator.editors.commons.dialogs.OpenStoExDialog;
+import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.PalladioComponentModelTextNonResizableEditPolicy;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.VariableCharacterisationItemSemanticEditPolicy;
+import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelRepositoryDiagramEditorPlugin;
 import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelVisualIDRegistry;
 import de.uka.ipd.sdq.pcm.gmf.repository.providers.PalladioComponentModelElementTypes;
 import de.uka.ipd.sdq.pcm.gmf.repository.providers.PalladioComponentModelParserProvider;
-
-import org.palladiosimulator.editors.commons.dialogs.OpenStoExDialog;
-import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
 import de.uka.ipd.sdq.stoex.Expression;
 
 /**
@@ -65,6 +66,8 @@ import de.uka.ipd.sdq.stoex.Expression;
  */
 public class VariableCharacterisationEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * @generated
      */
@@ -234,7 +237,13 @@ public class VariableCharacterisationEditPart extends CompartmentEditPart implem
             text = vc.getType().getLiteral() + " = ";
             Expression expression = vc.getSpecification_VariableCharacterisation().getExpression();
             if (expression != null) {
-                text += new PCMStoExPrettyPrintVisitor().prettyPrint(expression);
+                try {
+                    text += STOEX_SERIALISER.serialise(expression);
+                } catch (SerialisationErrorException e) {
+                    PalladioComponentModelRepositoryDiagramEditorPlugin.getInstance()
+                        .logError("Could not serialise expression.", e);
+                    text = null;
+                }
             }
         }
         if (text == null || text.length() == 0) {

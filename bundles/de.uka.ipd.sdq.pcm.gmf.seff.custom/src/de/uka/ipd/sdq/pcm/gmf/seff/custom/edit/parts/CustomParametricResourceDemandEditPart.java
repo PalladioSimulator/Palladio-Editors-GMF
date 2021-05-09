@@ -11,21 +11,25 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-
-import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.ParametricResourceDemandEditPart;
-import de.uka.ipd.sdq.pcm.gmf.seff.edit.policies.PalladioComponentModelTextNonResizableEditPolicy;
-import de.uka.ipd.sdq.pcm.gmf.seff.edit.policies.ParametricResourceDemandItemSemanticEditPolicy;
-
 import org.palladiosimulator.editors.commons.dialogs.OpenStoExDialog;
 import org.palladiosimulator.pcm.seff.seff_performance.ParametricResourceDemand;
 import org.palladiosimulator.pcm.seff.seff_performance.SeffPerformancePackage;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
+
+import de.uka.ipd.sdq.pcm.gmf.seff.custom.Activator;
+import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.ParametricResourceDemandEditPart;
+import de.uka.ipd.sdq.pcm.gmf.seff.edit.policies.PalladioComponentModelTextNonResizableEditPolicy;
+import de.uka.ipd.sdq.pcm.gmf.seff.edit.policies.ParametricResourceDemandItemSemanticEditPolicy;
+import de.uka.ipd.sdq.stoex.Expression;
 
 /**
  * The customized parametric resource demand edit part class.
  */
 public class CustomParametricResourceDemandEditPart extends ParametricResourceDemandEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     private static final int MAX_STOEX_DISPLAY_SIZE = 50;
 
     /** The change listener. */
@@ -86,8 +90,16 @@ public class CustomParametricResourceDemandEditPart extends ParametricResourceDe
         if (this.resolveSemanticElement() instanceof ParametricResourceDemand) {
             final ParametricResourceDemand demand = (ParametricResourceDemand) this.resolveSemanticElement();
             if (demand.getRequiredResource_ParametricResourceDemand() != null) {
-                text = new PCMStoExPrettyPrintVisitor().prettyPrint(demand.getSpecification_ParametericResourceDemand()
-                        .getExpression());
+                Expression expression = demand.getSpecification_ParametericResourceDemand()
+                        .getExpression();
+                try {
+                    text = STOEX_SERIALISER.serialise(expression);
+                } catch (SerialisationErrorException e) {
+                    Activator.getDefault()
+                        .getLog()
+                        .error("Could not serialise expression.", e);
+                    text = null;
+                }
                 if (text == null) {
                     text = "";
                 } else {

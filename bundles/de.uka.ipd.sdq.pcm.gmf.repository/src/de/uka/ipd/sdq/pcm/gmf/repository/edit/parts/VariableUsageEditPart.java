@@ -30,18 +30,23 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 import org.eclipse.swt.graphics.Color;
+import org.palladiosimulator.pcm.parameter.VariableUsage;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.VariableUsageItemSemanticEditPolicy;
+import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelRepositoryDiagramEditorPlugin;
 import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelVisualIDRegistry;
 import de.uka.ipd.sdq.pcm.gmf.repository.providers.PalladioComponentModelElementTypes;
-import org.palladiosimulator.pcm.parameter.VariableUsage;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import de.uka.ipd.sdq.stoex.AbstractNamedReference;
 
 /**
  * @generated
  */
 public class VariableUsageEditPart extends ShapeNodeEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * @generated
      */
@@ -310,11 +315,18 @@ public class VariableUsageEditPart extends ShapeNodeEditPart {
          * @generated not
          */
         private void createContents() {
-
             fFigureVariableUsageReferenceLabelFigure = new WrapLabel();
-            if (resolveSemanticElement() != null) {
-                fFigureVariableUsageReferenceLabelFigure.setText(new PCMStoExPrettyPrintVisitor()
-                        .prettyPrint(((VariableUsage) resolveSemanticElement()).getNamedReference__VariableUsage()));
+            AbstractNamedReference reference = ((VariableUsage) resolveSemanticElement())
+                .getNamedReference__VariableUsage();
+            String referenceText = null;
+            try {
+                referenceText = STOEX_SERIALISER.serialise(reference);
+            } catch (SerialisationErrorException e) {
+                PalladioComponentModelRepositoryDiagramEditorPlugin.getInstance()
+                    .logError("Could not serialise reference.", e);
+            }
+            if (referenceText != null) {
+                fFigureVariableUsageReferenceLabelFigure.setText(referenceText);
             } else {
                 fFigureVariableUsageReferenceLabelFigure.setText("<null>");
             }

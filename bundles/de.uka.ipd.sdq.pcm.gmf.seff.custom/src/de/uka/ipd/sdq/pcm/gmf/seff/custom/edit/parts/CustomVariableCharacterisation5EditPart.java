@@ -7,10 +7,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-
-import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.VariableCharacterisation5EditPart;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
+
+import de.uka.ipd.sdq.pcm.gmf.seff.custom.Activator;
+import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.VariableCharacterisation5EditPart;
 import de.uka.ipd.sdq.stoex.Expression;
 
 /**
@@ -18,6 +20,8 @@ import de.uka.ipd.sdq.stoex.Expression;
  */
 public class CustomVariableCharacterisation5EditPart extends VariableCharacterisation5EditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * Instantiates a new customized variable characterisation5 edit part.
      * 
@@ -48,7 +52,14 @@ public class CustomVariableCharacterisation5EditPart extends VariableCharacteris
             if (vc.getSpecification_VariableCharacterisation() != null) {
                 final Expression expression = vc.getSpecification_VariableCharacterisation().getExpression();
                 if (expression != null) {
-                    text += new PCMStoExPrettyPrintVisitor().prettyPrint(expression);
+                    try {
+                        text += STOEX_SERIALISER.serialise(expression);
+                    } catch (SerialisationErrorException e) {
+                        Activator.getDefault()
+                            .getLog()
+                            .error("Could not serialise expression.", e);
+                        text = null;
+                    }
                 }
             } else {
                 text = null;

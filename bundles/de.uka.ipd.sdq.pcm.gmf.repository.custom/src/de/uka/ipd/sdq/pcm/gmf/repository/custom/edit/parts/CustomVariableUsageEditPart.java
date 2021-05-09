@@ -7,15 +7,20 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
+import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
+import de.uka.ipd.sdq.pcm.gmf.repository.custom.Activator;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.parts.VariableUsageEditPart;
-import de.uka.ipd.sdq.pcm.stochasticexpressions.PCMStoExPrettyPrintVisitor;
+import de.uka.ipd.sdq.stoex.AbstractNamedReference;
 
 /**
  * A custom variable usage EditPart.
  */
 public class CustomVariableUsageEditPart extends VariableUsageEditPart {
 
+    protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
+    
     /**
      * The constructor.
      *
@@ -62,9 +67,16 @@ public class CustomVariableUsageEditPart extends VariableUsageEditPart {
         private void createContents() {
 
             fFigureVariableUsageReferenceLabelFigure = this.getFigureVariableUsageReferenceLabelFigure();
-            if (resolveSemanticElement() != null) {
-                fFigureVariableUsageReferenceLabelFigure.setText(new PCMStoExPrettyPrintVisitor()
-                .prettyPrint(((VariableUsage) resolveSemanticElement()).getNamedReference__VariableUsage()));
+            AbstractNamedReference reference = ((VariableUsage) resolveSemanticElement()).getNamedReference__VariableUsage();
+            String referenceText = null;
+            try {
+                referenceText = STOEX_SERIALISER.serialise(reference);
+            } catch (SerialisationErrorException e) {
+                Activator.getDefault().getLog().error("Could not serialise reference.", e);
+            }
+            
+            if (referenceText != null) {
+                fFigureVariableUsageReferenceLabelFigure.setText(referenceText);
             } else {
                 fFigureVariableUsageReferenceLabelFigure.setText("<null>");
             }
