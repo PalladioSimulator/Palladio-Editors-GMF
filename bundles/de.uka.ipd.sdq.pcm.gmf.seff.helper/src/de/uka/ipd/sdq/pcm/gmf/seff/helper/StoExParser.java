@@ -9,9 +9,11 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.palladiosimulator.editors.commons.dialogs.stoex.StoExCompletionProcessor;
-import org.palladiosimulator.pcm.repository.Parameter;
+import org.eclipse.jface.text.contentassist.IContextInformation;
+import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
 
 import de.uka.ipd.sdq.stoex.Expression;
@@ -26,13 +28,6 @@ public class StoExParser implements IParser {
     protected static final org.palladiosimulator.pcm.stoex.api.StoExParser STOEX_PARSER = org.palladiosimulator.pcm.stoex.api.StoExParser.createInstance();
     protected static final StoExSerialiser STOEX_SERIALISER = StoExSerialiser.createInstance();
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse
-     * .core.runtime.IAdaptable)
-     */
     /**
      * Gets the completion processor.
      * 
@@ -40,10 +35,46 @@ public class StoExParser implements IParser {
      *            the element
      * @return the completion processor
      * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse.core.runtime.IAdaptable)
+     * @deprecated This method only returns a dummy {@link IContentAssistProcessor} that does not
+     *             provide any useful information when called. Clients should switch to Xtext-based
+     *             editors.
      */
     @Override
+    @Deprecated
     public IContentAssistProcessor getCompletionProcessor(final IAdaptable element) {
-        return new StoExCompletionProcessor(new Parameter[] {});
+        return new IContentAssistProcessor() {
+
+            @Override
+            public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
+                return new ICompletionProposal[0];
+            }
+
+            @Override
+            public IContextInformation[] computeContextInformation(ITextViewer viewer, int offset) {
+                return new IContextInformation[0];
+            }
+
+            @Override
+            public char[] getCompletionProposalAutoActivationCharacters() {
+                return new char[0];
+            }
+
+            @Override
+            public char[] getContextInformationAutoActivationCharacters() {
+                return new char[0];
+            }
+
+            @Override
+            public String getErrorMessage() {
+                return null;
+            }
+
+            @Override
+            public IContextInformationValidator getContextInformationValidator() {
+                return null;
+            }
+            
+        };
     }
 
     /*
