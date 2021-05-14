@@ -3,6 +3,8 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.usage.custom.edit.part;
 
+import java.io.NotSerializableException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -11,7 +13,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.usage.custom.Activator;
 import de.uka.ipd.sdq.pcm.gmf.usage.edit.parts.VariableCharacterisationEditPart;
@@ -61,7 +62,7 @@ public class CustomVariableCharacterisationEditPart extends VariableCharacterisa
         if (expression != null) {
             try {
                 text += STOEX_SERIALISER.serialise(expression);
-            } catch (SerialisationErrorException e) {
+            } catch (NotSerializableException e) {
                 Activator.getDefault().getLog().error("Could not serialise expression.", e);
                 text = null;
             }

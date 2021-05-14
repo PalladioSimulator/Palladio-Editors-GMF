@@ -3,6 +3,8 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.seff.custom.edit.parts;
 
+import java.io.NotSerializableException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -15,7 +17,6 @@ import org.palladiosimulator.editors.commons.dialogs.OpenStoExDialog;
 import org.palladiosimulator.pcm.seff.seff_performance.ParametricResourceDemand;
 import org.palladiosimulator.pcm.seff.seff_performance.SeffPerformancePackage;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.seff.custom.Activator;
 import de.uka.ipd.sdq.pcm.gmf.seff.edit.parts.ParametricResourceDemandEditPart;
@@ -94,7 +95,7 @@ public class CustomParametricResourceDemandEditPart extends ParametricResourceDe
                         .getExpression();
                 try {
                     text = STOEX_SERIALISER.serialise(expression);
-                } catch (SerialisationErrorException e) {
+                } catch (NotSerializableException e) {
                     Activator.getDefault()
                         .getLog()
                         .error("Could not serialise expression.", e);

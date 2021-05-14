@@ -3,6 +3,7 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.repository.edit.parts;
 
+import java.io.NotSerializableException;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +56,6 @@ import org.eclipse.swt.graphics.Image;
 import org.palladiosimulator.editors.commons.dialogs.repository.OpenCapacityDialog;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.PalladioComponentModelTextNonResizableEditPolicy;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.PassiveResourceItemSemanticEditPolicy;
@@ -240,7 +240,7 @@ public class PassiveResourceEditPart extends CompartmentEditPart implements ITex
             if (pr.getCapacity_PassiveResource() != null) {
                 try {
                     stoex = STOEX_SERIALISER.serialise(pr.getCapacity_PassiveResource().getExpression());
-                } catch (SerialisationErrorException e) {
+                } catch (NotSerializableException e) {
                     PalladioComponentModelRepositoryDiagramEditorPlugin.getInstance()
                     .logError("Could not serialise expression.", e);
                 }
