@@ -3,6 +3,8 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.repository.edit.parts;
 
+import java.io.NotSerializableException;
+
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
@@ -32,7 +34,6 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicy
 import org.eclipse.swt.graphics.Color;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.VariableUsageItemSemanticEditPolicy;
 import de.uka.ipd.sdq.pcm.gmf.repository.part.PalladioComponentModelRepositoryDiagramEditorPlugin;
@@ -321,7 +322,7 @@ public class VariableUsageEditPart extends ShapeNodeEditPart {
             String referenceText = null;
             try {
                 referenceText = STOEX_SERIALISER.serialise(reference);
-            } catch (SerialisationErrorException e) {
+            } catch (NotSerializableException e) {
                 PalladioComponentModelRepositoryDiagramEditorPlugin.getInstance()
                     .logError("Could not serialise reference.", e);
             }

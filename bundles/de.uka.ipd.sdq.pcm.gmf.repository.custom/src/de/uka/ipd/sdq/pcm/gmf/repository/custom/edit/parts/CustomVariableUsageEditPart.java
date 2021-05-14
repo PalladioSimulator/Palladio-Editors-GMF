@@ -3,12 +3,13 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.repository.custom.edit.parts;
 
+import java.io.NotSerializableException;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.custom.Activator;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.parts.VariableUsageEditPart;
@@ -71,7 +72,7 @@ public class CustomVariableUsageEditPart extends VariableUsageEditPart {
             String referenceText = null;
             try {
                 referenceText = STOEX_SERIALISER.serialise(reference);
-            } catch (SerialisationErrorException e) {
+            } catch (NotSerializableException e) {
                 Activator.getDefault().getLog().error("Could not serialise reference.", e);
             }
             

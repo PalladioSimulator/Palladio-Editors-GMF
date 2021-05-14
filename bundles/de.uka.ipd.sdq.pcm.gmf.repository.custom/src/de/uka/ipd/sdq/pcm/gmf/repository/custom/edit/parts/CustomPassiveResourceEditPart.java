@@ -3,13 +3,14 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.repository.custom.edit.parts;
 
+import java.io.NotSerializableException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.palladiosimulator.pcm.repository.PassiveResource;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.custom.Activator;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.parts.PassiveResourceEditPart;
@@ -49,7 +50,7 @@ public class CustomPassiveResourceEditPart extends PassiveResourceEditPart {
             if (pr.getCapacity_PassiveResource() != null) {
                 try {
                     stoex = STOEX_SERIALISER.serialise(pr.getCapacity_PassiveResource().getExpression());
-                } catch (SerialisationErrorException e) {
+                } catch (NotSerializableException e) {
                     Activator.getDefault().getLog().error("Could not serialise expression.", e);
                 }
             }

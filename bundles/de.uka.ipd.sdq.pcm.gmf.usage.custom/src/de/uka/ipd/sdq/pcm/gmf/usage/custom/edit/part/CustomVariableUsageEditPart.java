@@ -3,6 +3,8 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.usage.custom.edit.part;
 
+import java.io.NotSerializableException;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -10,7 +12,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 import org.palladiosimulator.pcm.parameter.VariableUsage;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.usage.custom.Activator;
 import de.uka.ipd.sdq.pcm.gmf.usage.edit.parts.VariableUsageEditPart;
@@ -84,7 +85,7 @@ public class CustomVariableUsageEditPart extends VariableUsageEditPart {
             String referenceText = "<null>";
             try {
                 referenceText = STOEX_SERIALISER.serialise(reference);
-            } catch (SerialisationErrorException e) {
+            } catch (NotSerializableException e) {
                 Activator.getDefault().getLog().error("Could not serialise reference.", e);
             }
             fFigureVariableUsageReferenceLabelFigure.setText(referenceText);

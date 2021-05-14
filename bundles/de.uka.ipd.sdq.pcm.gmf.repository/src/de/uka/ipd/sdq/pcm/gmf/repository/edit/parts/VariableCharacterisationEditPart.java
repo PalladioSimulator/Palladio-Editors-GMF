@@ -3,6 +3,7 @@
  */
 package de.uka.ipd.sdq.pcm.gmf.repository.edit.parts;
 
+import java.io.NotSerializableException;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +52,6 @@ import org.eclipse.swt.graphics.Image;
 import org.palladiosimulator.editors.commons.dialogs.OpenStoExDialog;
 import org.palladiosimulator.pcm.parameter.VariableCharacterisation;
 import org.palladiosimulator.pcm.stoex.api.StoExSerialiser;
-import org.palladiosimulator.pcm.stoex.api.StoExSerialiser.SerialisationErrorException;
 
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.PalladioComponentModelTextNonResizableEditPolicy;
 import de.uka.ipd.sdq.pcm.gmf.repository.edit.policies.VariableCharacterisationItemSemanticEditPolicy;
@@ -239,7 +239,7 @@ public class VariableCharacterisationEditPart extends CompartmentEditPart implem
             if (expression != null) {
                 try {
                     text += STOEX_SERIALISER.serialise(expression);
-                } catch (SerialisationErrorException e) {
+                } catch (NotSerializableException e) {
                     PalladioComponentModelRepositoryDiagramEditorPlugin.getInstance()
                         .logError("Could not serialise expression.", e);
                     text = null;
