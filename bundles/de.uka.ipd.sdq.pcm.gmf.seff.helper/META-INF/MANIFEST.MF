@@ -23,5 +23,5 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.stoex.analyser,
  org.palladiosimulator.editors.commons.dialogs
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: de.uka.ipd.sdq.pcm.gmf.seff.helper

@@ -46,4 +46,4 @@ Require-Bundle: org.eclipse.core.runtime,
  de.uka.ipd.sdq.units.edit;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.gef;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17

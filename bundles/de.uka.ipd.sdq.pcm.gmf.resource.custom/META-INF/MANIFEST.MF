@@ -11,5 +11,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.palladiosimulator.editors.commons.dialogs;bundle-version="1.0.0",
  de.uka.ipd.sdq.pcm.gmf.resource;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Vendor: sdq.ipd.uka.de

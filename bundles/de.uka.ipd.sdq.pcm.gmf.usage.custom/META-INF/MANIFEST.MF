@@ -16,4 +16,4 @@ Bundle-Vendor: sdq.ipd.uka.de
 Export-Package: de.uka.ipd.sdq.pcm.gmf.usage.custom,
  de.uka.ipd.sdq.pcm.gmf.usage.custom.edit.part,
  de.uka.ipd.sdq.pcm.gmf.usage.custom.providers
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
