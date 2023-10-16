@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PCM GMF Editors Tests
 Bundle-SymbolicName: org.palladiosimulator.editors.gmf.tests
-Bundle-Version: 5.1.0.qualifier
+Bundle-Version: 5.2.0
 Bundle-Activator: org.palladiosimulator.editors.gmf.tests.Activator
 Bundle-Vendor: palladiosimulator.org
 Require-Bundle: org.eclipse.core.runtime,
