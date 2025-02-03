@@ -11,7 +11,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="org.palladiosimulator.pcm.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-core-pcm/nightly/"/>
+<!--repository location="https://updatesite.palladio-simulator.com/palladio-core-pcm/nightly/"/-->
+<repository location="https://updatesite.palladio-simulator.com/palladio-core-pcm/branches/no_ui-pcm"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release">
 <unit id="de.uka.ipd.sdq.identifier.feature.feature.group" version="0.0.0"/>
@@ -19,7 +20,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="de.uka.ipd.sdq.identifier.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-core-commons/nightly/"/>
+<!--repository location="https://updatesite.palladio-simulator.com/palladio-core-commons/nightly/"/-->
+<repository location="https://updatesite.palladio-simulator.com/palladio-core-commons/branches/no_ui-pcm/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release">
 <unit id="org.palladiosimulator.editors.commons.feature.feature.group" version="0.0.0"/>
@@ -27,7 +29,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="org.palladiosimulator.editors.commons.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-editors-commons/nightly/"/>
+<!--repository location="https://updatesite.palladio-simulator.com/palladio-editors-commons/nightly/"/-->
+<repository location="https://updatesite.palladio-simulator.com/palladio-editors-commons/branches/no_ui-pcm"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release">
 <unit id="org.palladiosimulator.edp2.feature.feature.group" version="0.0.0"/>
@@ -35,7 +38,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="org.palladiosimulator.edp2.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-qual-edp2/nightly/"/>
+<!--repository location="https://updatesite.palladio-simulator.com/palladio-qual-edp2/nightly/"/-->
+<repository location="https://updatesite.palladio-simulator.com/palladio-qual-edp2/branches/no_ui-pcm"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release">
 <unit id="org.palladiosimulator.metricspec.feature.feature.group" version="0.0.0"/>
@@ -43,7 +47,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="org.palladiosimulator.metricspec.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-qual-metricspecification/nightly/"/>
+<!--repository location="https://updatesite.palladio-simulator.com/palladio-qual-metricspecification/nightly/"/-->
+<repository location="https://updatesite.palladio-simulator.com/palladio-qual-metricspecification/branches/no_ui-pcm"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="release">
 <unit id="org.palladiosimulator.thirdpartywrapper.feature.feature.group" version="0.0.0"/>
@@ -59,7 +64,8 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="org.palladiosimulator.measurementframework.feature.feature.group" version="0.0.0"/>
-<repository location="https://updatesite.palladio-simulator.com/palladio-qual-measurementframework/nightly/"/>
+<!--repository location="https://updatesite.palladio-simulator.com/palladio-qual-measurementframework/nightly/"/-->
+<repository location="https://updatesite.palladio-simulator.com/palladio-qual-measurementframework/branches/no_ui-pcm"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit" filter="nightly">
 <unit id="tools.mdsd.library.emfeditutils.feature.feature.group" version="0.0.0"/>
