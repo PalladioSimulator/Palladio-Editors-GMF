@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PCM Editors GMF UI
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.gmf.ui;singleton:=true
-Bundle-Version: 5.2.1.qualifier
+Bundle-Version: 5.2.2
 Automatic-Module-Name: de.uka.ipd.sdq.pcm.gmf.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.eclipse.ui;bundle-version="3.113.0",
