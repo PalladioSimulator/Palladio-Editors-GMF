@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Toolbar Plug-in
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.gmf.toolbar;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.core.runtime,
@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.pcm.gmf.usage,
  de.uka.ipd.sdq.pcm.gmf.repository,
  de.uka.ipd.sdq.pcm.gmf.composite,
- de.uka.ipd.sdq.pcm.gmf.resource;bundle-version="1.0.0"
+ de.uka.ipd.sdq.pcm.gmf.resource
 Bundle-Vendor: sdq.ipd.uka.de
 Bundle-RequiredExecutionEnvironment: JavaSE-17

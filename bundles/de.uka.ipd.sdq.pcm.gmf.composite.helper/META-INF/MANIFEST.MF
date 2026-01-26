@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Composite Diagram Edit Helper Plug-in
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.gmf.composite.helper;singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-Activator: de.uka.ipd.sdq.pcm.gmf.composite.helper.CompositeHelperPlugin
 Bundle-Vendor: sdq.ipd.uka.de
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
- org.palladiosimulator.editors.commons.dialogs;bundle-version="1.0.0",
- org.palladiosimulator.pcm;bundle-version="4.0.0"
+ org.palladiosimulator.editors.commons.dialogs,
+ org.palladiosimulator.pcm
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-17

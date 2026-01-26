@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: de.uka.ipd.sdq.pcm.gmf.composite; singleton:=true
-Bundle-Version: 5.2.2
+Bundle-Version: 6.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: de.uka.ipd.sdq.pcm.gmf.composite.part.PalladioComponentModelComposedStructureDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -40,17 +40,17 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.gmf.tooling.runtime;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
- org.palladiosimulator.pcm;bundle-version="4.0.0";visibility:=reexport,
- org.palladiosimulator.pcm.edit;bundle-version="3.6.0";visibility:=reexport,
- de.uka.ipd.sdq.identifier;bundle-version="2.1.0";visibility:=reexport,
- de.uka.ipd.sdq.identifier.edit;bundle-version="2.1.0";visibility:=reexport,
- de.uka.ipd.sdq.probfunction;bundle-version="2.1.0";visibility:=reexport,
- de.uka.ipd.sdq.probfunction.edit;bundle-version="2.1.0";visibility:=reexport,
- de.uka.ipd.sdq.stoex;bundle-version="2.2.0";visibility:=reexport,
- de.uka.ipd.sdq.stoex.edit;bundle-version="2.2.0";visibility:=reexport,
- de.uka.ipd.sdq.units;bundle-version="2.1.0";visibility:=reexport,
- de.uka.ipd.sdq.units.edit;bundle-version="2.1.0";visibility:=reexport,
- org.palladiosimulator.editors.commons.tabs;bundle-version="2.0.1",
- org.palladiosimulator.pcm.ui;bundle-version="2.0.0"
+ org.palladiosimulator.pcm;visibility:=reexport,
+ org.palladiosimulator.pcm.edit;visibility:=reexport,
+ de.uka.ipd.sdq.identifier;visibility:=reexport,
+ de.uka.ipd.sdq.identifier.edit;visibility:=reexport,
+ de.uka.ipd.sdq.probfunction;visibility:=reexport,
+ de.uka.ipd.sdq.probfunction.edit;visibility:=reexport,
+ de.uka.ipd.sdq.stoex;visibility:=reexport,
+ de.uka.ipd.sdq.stoex.edit;visibility:=reexport,
+ de.uka.ipd.sdq.units;visibility:=reexport,
+ de.uka.ipd.sdq.units.edit;visibility:=reexport,
+ org.palladiosimulator.editors.commons.tabs,
+ org.palladiosimulator.pcm.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-17

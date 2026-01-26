@@ -2,7 +2,7 @@
 <feature
       id="org.palladiosimulator.editors.gmf.feature"
       label="Palladio Component Model - GMF Editors"
-      version="5.2.2"
+      version="6.0.0.qualifier"
       plugin="org.palladiosimulator.branding"
       license-feature="org.palladiosimulator.license"
       license-feature-version="1.0.0">
@@ -35,47 +35,47 @@ This feature brings GMF-based editors to Palladio.
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
       <import plugin="org.eclipse.gmf.tooling.runtime"/>
       <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.palladiosimulator.pcm" version="4.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.pcm"/>
       <import plugin="org.palladiosimulator.pcm.edit"/>
-      <import plugin="de.uka.ipd.sdq.identifier" version="2.1.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.identifier.edit" version="2.1.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.probfunction" version="2.1.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.probfunction.edit" version="2.1.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.stoex" version="2.2.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.stoex.edit" version="2.2.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.units" version="2.1.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.units.edit" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.identifier"/>
+      <import plugin="de.uka.ipd.sdq.identifier.edit"/>
+      <import plugin="de.uka.ipd.sdq.probfunction"/>
+      <import plugin="de.uka.ipd.sdq.probfunction.edit"/>
+      <import plugin="de.uka.ipd.sdq.stoex"/>
+      <import plugin="de.uka.ipd.sdq.stoex.edit"/>
+      <import plugin="de.uka.ipd.sdq.units"/>
+      <import plugin="de.uka.ipd.sdq.units.edit"/>
       <import plugin="org.eclipse.gef"/>
       <import plugin="org.eclipse.gmf.runtime.emf.type.core" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.pcm.gmf.allocation" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.pcm.gmf.allocation"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.gmf.runtime.common.core"/>
       <import plugin="org.eclipse.gmf.runtime.common.ui"/>
       <import plugin="org.palladiosimulator.pcm.ui"/>
       <import plugin="de.uka.ipd.sdq.dialogs"/>
-      <import plugin="org.palladiosimulator.editors.commons.dialogs" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.editors.commons.dialogs"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
-      <import plugin="org.palladiosimulator.editors.commons.tabs" version="2.0.1" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.editors.commons.tabs"/>
       <import plugin="org.eclipse.gmf.runtime.notation.providers"/>
-      <import plugin="de.uka.ipd.sdq.stoex.analyser" version="2.0.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.pcm.stochasticexpressions" version="2.0.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.pcm.gmf.repository" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.stoex.analyser"/>
+      <import plugin="de.uka.ipd.sdq.pcm.stochasticexpressions"/>
+      <import plugin="de.uka.ipd.sdq.pcm.gmf.repository"/>
       <import plugin="org.eclipse.emf.common.ui" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.editors"/>
       <import plugin="org.eclipse.emf.common" version="2.5.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.pcm.gmf.resource" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.pcm.gmf.resource"/>
       <import plugin="org.eclipse.emf.query"/>
-      <import plugin="org.palladiosimulator.editors.commons.propertytabs" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.palladiosimulator.editors.commons.propertytabs"/>
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.core.commands" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="de.uka.ipd.sdq.pcm.gmf.seff" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.pcm.gmf.seff"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="de.uka.ipd.sdq.pcm.gmf.usage" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="de.uka.ipd.sdq.pcm.gmf.usage"/>
       <import plugin="org.palladiosimulator.branding"/>
    </requires>
 
