@@ -15,4 +15,4 @@ Require-Bundle: org.eclipse.ui,
  de.uka.ipd.sdq.pcm.gmf.composite,
  de.uka.ipd.sdq.pcm.gmf.resource
 Bundle-Vendor: sdq.ipd.uka.de
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
