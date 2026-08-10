@@ -69,7 +69,6 @@ This feature brings GMF-based editors to Palladio.
       <import plugin="org.eclipse.ui.editors"/>
       <import plugin="org.eclipse.emf.common" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="de.uka.ipd.sdq.pcm.gmf.resource"/>
-      <import plugin="org.eclipse.emf.query"/>
       <import plugin="org.palladiosimulator.editors.commons.propertytabs"/>
       <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.core.commands" version="3.5.0" match="greaterOrEqual"/>

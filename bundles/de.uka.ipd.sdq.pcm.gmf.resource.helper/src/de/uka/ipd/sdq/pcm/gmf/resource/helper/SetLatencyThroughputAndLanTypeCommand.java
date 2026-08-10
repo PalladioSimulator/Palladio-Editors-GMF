@@ -7,14 +7,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EObjectAttributeValueCondition;
-import org.eclipse.emf.query.statements.FROM;
-import org.eclipse.emf.query.statements.IQueryResult;
-import org.eclipse.emf.query.statements.SELECT;
-import org.eclipse.emf.query.statements.WHERE;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
@@ -27,7 +24,6 @@ import org.palladiosimulator.pcm.core.PCMRandomVariable;
 import org.palladiosimulator.pcm.resourceenvironment.CommunicationLinkResourceSpecification;
 import org.palladiosimulator.pcm.resourceenvironment.LinkingResource;
 import org.palladiosimulator.pcm.resourcetype.CommunicationLinkResourceType;
-import org.palladiosimulator.pcm.resourcetype.ResourcetypePackage;
 import de.uka.ipd.sdq.stoex.analyser.visitors.TypeEnum;
 
 /**
@@ -116,12 +112,16 @@ public class SetLatencyThroughputAndLanTypeCommand extends ConfigureElementComma
         for (Resource r : resources) {
             c.addAll(r.getContents());
         }
-        SELECT statement = new SELECT(new FROM(c), new WHERE(new EObjectAttributeValueCondition(
-                ResourcetypePackage.eINSTANCE.getCommunicationLinkResourceType().getEIDAttribute(),
-                new org.eclipse.emf.query.conditions.strings.StringValue(LAN_COMMUNICATION_LINK_RESOURCE_TYPE))));
-        IQueryResult queryResult = statement.execute();
-        CommunicationLinkResourceType lanType = (CommunicationLinkResourceType) queryResult.iterator().next();
-        return lanType;
+        // Walk the loaded resources and their containment trees and return the LAN type
+        // by its well known ID. Returns null when no resource repository provides it.
+        for (TreeIterator<Object> contents = EcoreUtil.getAllContents(c, true); contents.hasNext();) {
+            Object candidate = contents.next();
+            if (candidate instanceof CommunicationLinkResourceType lanType
+                    && LAN_COMMUNICATION_LINK_RESOURCE_TYPE.equals(lanType.getId())) {
+                return lanType;
+            }
+        }
+        return null;
     }
 
     /**
