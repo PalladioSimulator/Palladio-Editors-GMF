@@ -11,6 +11,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.Handle;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -57,8 +58,8 @@ public class CustomGuardedBranchTransitionIdEditPart extends GuardedBranchTransi
         this.installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
 
             @Override
-            protected List<Object> createSelectionHandles() {
-                final List<Object> handles = new ArrayList<Object>();
+            protected List<Handle> createSelectionHandles() {
+                final List<Handle> handles = new ArrayList<Handle>();
                 NonResizableHandleKit.addMoveHandle((GraphicalEditPart) this.getHost(), handles);
                 return handles;
             }
